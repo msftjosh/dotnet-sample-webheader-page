@@ -1,0 +1,47 @@
+﻿@model dynamic
+
+<h1>Call Status</h1>
+<div id="time">Current Server Time: @ViewBag.CurrentTime (@ViewBag.TimeZone)</div>
+<h2>Client Info</h2>
+<div id="clientPublicIp">Client Public IP (as seen by Server): @ViewBag.ClientPublicIP</div>
+<div id="clientIp">Client Local IP: @ViewBag.ClientIP</div>
+<div id="xForwardedFor">x-forwarded-for: @ViewBag.XForwardedFor</div>
+<details>
+    <summary>Response Headers (Sent to Client)</summary>
+    <div id="responseHeaders">
+        --PLACEHOLDER--
+    </div>
+</details>
+<h2>Server Side Info</h2>
+<div id="serverHostname">Server Hostname: @ViewBag.ServerHostname</div>
+<div id="serverPublicIp">Server Public IP (as resolved by Client): @ViewBag.serverPublicIp</div>
+<div id="serverIp">Server Local IP: @ViewBag.ServerIPAddress</div>
+<details>
+    <summary>Request Headers (Sent from Client to Server)</summary>
+    <div id="requestHeaders">
+        @foreach (var header in ViewBag.HostHeaders)
+            {
+                <div>@header.Key: @header.Value</div>
+            }
+    </div>
+</details>
+<script>
+    function getInfo() {
+        var serverIPContainer = document.getElementById('serverPublicIp');
+        var clientIpAddress = '<%=request.getRemoteHost();%>';
+        var clientIPContainer = document.getElementById('clientIp');
+    };
+    function parseHttpHeaders(httpHeaders) {
+    return httpHeaders.split("\n")
+     .map(x=>x.split(/: */,2))
+     .filter(x=>x[0])
+     .reduce((ac, x)=>{ac[x[0]] = x[1];return ac;}, {});
+    }
+
+    var req = new XMLHttpRequest();
+    req.open('GET', document.location, false);
+    req.send(null);
+    var ajaxHeaders = parseHttpHeaders(req.getAllResponseHeaders());
+// Now we can do:  ajaxHeaders["content-type"]
+    window.onload = getInfo();
+</script>

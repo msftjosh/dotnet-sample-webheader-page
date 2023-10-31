@@ -1,0 +1,7 @@
+C:\Users\azureuser\Desktop\web\web-client-server-info\PublishOutput\web-client-server-info.exe
+C:\Users\azureuser\Desktop\web\web-client-server-info\PublishOutput\appsettings.Development.json
+C:\Users\azureuser\Desktop\web\web-client-server-info\PublishOutput\appsettings.json
+C:\Users\azureuser\Desktop\web\web-client-server-info\PublishOutput\web-client-server-info.dll
+C:\Users\azureuser\Desktop\web\web-client-server-info\PublishOutput\web-client-server-info.deps.json
+C:\Users\azureuser\Desktop\web\web-client-server-info\PublishOutput\web-client-server-info.runtimeconfig.json
+C:\Users\azureuser\Desktop\web\web-client-server-info\PublishOutput\web-client-server-info.pdb
